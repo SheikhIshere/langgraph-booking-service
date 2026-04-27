@@ -1,0 +1,25 @@
+Table listings {
+  id uuid [pk]
+  title varchar
+  location varchar
+  price decimal
+  is_available boolean
+}
+
+Table bookings {
+  id uuid [pk]
+  listing_id uuid
+  guest_first_name varchar
+  guest_last_name varchar
+  guest_mobile_number varchar
+  check_in date
+  check_out date
+}
+
+Table conversations {
+  id uuid [pk]
+  session_id varchar
+  history jsonb
+}
+
+Ref: bookings.listing_id > listings.id
