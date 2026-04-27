@@ -3,13 +3,11 @@ from app.core.config import settings
 from app.agent.tools import search_available_properties, get_listing_details, create_booking
 from app.agent.state import AgentState
 from langchain_core.messages import SystemMessage, AIMessage
+from .prompt import SYSTEM_PROMPT
 
 llm = ChatGroq(api_key=settings.GROQ_API_KEY, model_name="llama-3.3-70b-versatile")
 tools = [search_available_properties, get_listing_details, create_booking]
 llm_with_tools = llm.bind_tools(tools)
-
-SYSTEM_PROMPT = """You handle property searches, details, and bookings. 
-If a user asks for anything else, or if an action fails, reply EXACTLY with: 'I cannot help with that. Would you like to speak to a human?'"""
 
 async def agent_node(state: AgentState):
     messages = [SystemMessage(content=SYSTEM_PROMPT)] + state["messages"]
