@@ -4,7 +4,7 @@ from app.agent.tools import search_available_properties, get_listing_details, cr
 from app.agent.state import AgentState
 from langchain_core.messages import SystemMessage, AIMessage
 
-llm = ChatGroq(api_key=settings.GROQ_API_KEY, model_name="mixtral-8x7b-32768")
+llm = ChatGroq(api_key=settings.GROQ_API_KEY, model_name="llama-3.3-70b-versatile")
 tools = [search_available_properties, get_listing_details, create_booking]
 llm_with_tools = llm.bind_tools(tools)
 
