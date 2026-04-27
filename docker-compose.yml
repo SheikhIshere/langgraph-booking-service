@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - "8000:8000"
+      - "8014:8014"
     env_file:
       - .env
     depends_on:
@@ -16,6 +16,8 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5436:5432"
 
 volumes:
   pgdata:
